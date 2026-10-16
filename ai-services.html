@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Services - Monetize AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0066cc;
+            --secondary-blue: #004c99;
+            --primary-green: #00cc66;
+            --secondary-green: #00a352;
+            --light-gray: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            bottom: -10px;
+            left: 0;
+            border-radius: 3px;
+        }
+        
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(90deg, var(--secondary-blue), var(--secondary-green));
+            transform: translateY(-2px);
+        }
+        
+        .navbar {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Animation styles */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+    <!-- Navigation (Copied from Portfolio) -->
+    <nav class="navbar fixed w-full z-10 py-3 px-4 md:px-8">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded overflow-hidden mr-2">
+                    <img src="https://i.imgur.com/6ZrVKCY.png?text=MA" alt="Monetize AI Logo" class="w-full h-full object-cover">
+                </div>
+                <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-500">Monetize AI</span>
+            </div>
+            <button class="md:hidden text-gray-800 focus:outline-none" id="menuToggle">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="index.html#home" class="nav-link font-medium text-gray-700 hover:text-blue-600">Home</a>
+                <a href="about.html" class="nav-link font-medium text-gray-700 hover:text-blue-600">About</a>
+                <a href="index.html#skills" class="nav-link font-medium text-gray-700 hover:text-blue-600">Skills</a>
+                <a href="index.html#portfolio" class="nav-link font-medium text-gray-700 hover:text-blue-600">Portfolio</a>
+                <a href="ai-services.html" class="nav-link font-medium text-blue-600 hover:text-blue-800">AI Services</a>
+                <a href="blog.html" class="nav-link font-medium text-gray-700 hover:text-blue-600">Blog</a>
+                <a href="index.html#contact" class="nav-link font-medium text-gray-700 hover:text-blue-600">Contact</a>
+                <a href="index.html#contact" class="btn-primary px-4 py-2 rounded-full text-white font-medium shadow-lg">Hire Me</a>
+            </div>
+        </div>
+        <div class="md:hidden hidden bg-white absolute top-16 left-0 right-0 shadow-md rounded-b-lg" id="mobileMenu">
+            <div class="flex flex-col p-4 space-y-3">
+                <a href="index.html#home" class="py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Home</a>
+                <a href="about.html" class="py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">About</a>
+                <a href="index.html#skills" class="py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Skills</a>
+                <a href="index.html#portfolio" class="py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Portfolio</a>
+                <a href="ai-services.html" class="py-2 px-4 text-blue-600 bg-gray-100 rounded">AI Services</a>
+                <a href="blog.html" class="py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Blog</a>
+                <a href="index.html#contact" class="py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Contact</a>
+                <a href="index.html#contact" class="btn-primary py-2 px-4 rounded-full text-white text-center font-medium shadow-lg">Hire Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-600 to-green-500 text-white py-20">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="max-w-3xl mx-auto text-center animate-fadeInUp">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">AI Services</h1>
+                <p class="text-xl">
+                    Leveraging artificial intelligence to solve complex problems and drive innovation
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-4 md:px-8">
+            <h2 class="section-title text-3xl md:text-4xl font-bold text-center">AI Consulting Services</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-16">
+                Strategic AI solutions for your business
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-600 card">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-lightbulb text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-blue-600">AI Strategy Development</h3>
+                    <p class="text-gray-600">
+                        Comprehensive AI strategy development to identify opportunities, set priorities, and create a roadmap for implementation.
+                    </p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-600 card">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-code text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-blue-600">Custom AI Solutions</h3>
+                    <p class="text-gray-600">
+                        Development of tailored AI solutions to address specific business challenges and improve operational efficiency.
+                    </p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-600 card">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-comment-dots text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-blue-600">Conversational AI</h3>
+                    <p class="text-gray-600">
+                        Design and implementation of chatbots and virtual assistants to enhance customer service and streamline interactions.
+                    </p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-600 card">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-chart-line text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-blue-600">Predictive Analytics</h3>
+                    <p class="text-gray-600">
+                        Development of predictive models to forecast trends, identify patterns, and make data-driven decisions.
+                    </p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-600 card">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-language text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-blue-600">Natural Language Processing</h3>
+                    <p class="text-gray-600">
+                        Implementation of NLP solutions for text analysis, sentiment analysis, and automated content generation.
+                    </p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-600 card">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-cogs text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-blue-600">AI Integration</h3>
+                    <p class="text-gray-600">
+                        Seamless integration of AI capabilities into existing systems and workflows to enhance functionality.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prompt Engineering Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 md:px-8">
+            <h2 class="section-title text-3xl md:text-4xl font-bold text-center">Prompt Engineering</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-16">
+                Mastering the art of effective AI prompting
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-600">What is Prompt Engineering?</h3>
+                    <p class="text-gray-600 mb-4">
+                        Prompt engineering is the process of designing and refining inputs to AI systems to generate high-quality, relevant outputs. It's a crucial skill for effectively leveraging AI tools like GPT-4, DALL-E, and other large language models.
+                    </p>
+                    <p class="text-gray-600">
+                        As an experienced prompt engineer, I help businesses and individuals craft effective prompts that maximize the capabilities of AI systems, ensuring they deliver the desired results consistently and efficiently.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-600">My Approach to Prompt Engineering</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                            Understanding the specific capabilities and limitations of different AI models
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                            Crafting clear, specific prompts with appropriate context and constraints
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                            Implementing iterative refinement to improve output quality
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                            Developing prompt templates and frameworks for consistent results
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                            Training teams on effective prompt engineering techniques
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-600">Prompt Engineering Services</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                            Custom prompt development for specific use cases
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                            Prompt optimization for improved efficiency and accuracy
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                            Development of prompt libraries and templates
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                            Prompt engineering workshops and training
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                            AI workflow design and implementation
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-600">Benefits of Expert Prompt Engineering</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                            Significantly improved AI output quality and relevance
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                            Reduced time and resources spent on AI interactions
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                            More consistent and predictable AI performance
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                            Enhanced ability to leverage AI for complex tasks
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                            Competitive advantage through superior AI utilization
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-4 md:px-8">
+            <h2 class="section-title text-3xl md:text-4xl font-bold text-center">AI Projects</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-16">
+                A showcase of my AI implementation work
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md card">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://via.placeholder.com/600x400.png?text=AI+Chatbot" alt="AI Chatbot Implementation" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-600">AI Chatbot Implementation</h3>
+                        <p class="text-gray-600 mb-4">
+                            Custom AI chatbot development for customer service automation, reducing response time and improving customer satisfaction.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Chatbot</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">NLP</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Customer Service</span>
+                        </div>
+                        <a href="#" class="btn-primary w-full block text-center text-white py-2 rounded-full font-medium">View Case Study</a>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md card">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://via.placeholder.com/600x400.png?text=Content+Generation" alt="Content Generation System" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-600">Content Generation System</h3>
+                        <p class="text-gray-600 mb-4">
+                            AI-powered content generation system for marketing teams to create consistent, on-brand content at scale.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Content Generation</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">GPT</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Marketing</span>
+                        </div>
+                        <a href="#" class="btn-primary w-full block text-center text-white py-2 rounded-full font-medium">View Case Study</a>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md card">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://via.placeholder.com/600x400.png?text=Sentiment+Analysis" alt="Sentiment Analysis Tool" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-600">Sentiment Analysis Tool</h3>
+                        <p class="text-gray-600 mb-4">
+                            Sentiment analysis tool for social media monitoring, providing real-time insights into brand perception.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Sentiment Analysis</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Social Media</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Analytics</span>
+                        </div>
+                        <a href="#" class="btn-primary w-full block text-center text-white py-2 rounded-full font-medium">View Case Study</a>
+                    </div>
+                </div>
+                <!-- Project 4 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md card">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://via.placeholder.com/600x400.png?text=Recommendation+Engine" alt="AI Recommendation Engine" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-600">AI Recommendation Engine</h3>
+                        <p class="text-gray-600 mb-4">
+                            Personalized recommendation engine for e-commerce platforms, increasing conversion rates and average order value.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Recommendations</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">E-commerce</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Machine Learning</span>
+                        </div>
+                        <a href="#" class="btn-primary w-full block text-center text-white py-2 rounded-full font-medium">View Case Study</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Implementation Process Section -->
+    <section class="py-20 bg-gradient-to-r from-blue-600 to-green-500 text-white">
+        <div class="container mx-auto px-4 md:px-8">
+            <h2 class="section-title text-3xl md:text-4xl font-bold text-center text-white">My AI Implementation Process</h2>
+            <p class="text-center text-white max-w-3xl mx-auto mb-16">
+                How I approach AI projects
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md text-gray-800">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <span class="text-blue-600 font-bold text-xl">1</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Assessment</h3>
+                    <p class="text-gray-600">
+                        Evaluating your business needs, existing systems, and identifying opportunities where AI can add the most value.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-gray-800">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <span class="text-blue-600 font-bold text-xl">2</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Strategy</h3>
+                    <p class="text-gray-600">
+                        Developing a comprehensive AI strategy with clear objectives, timelines, and success metrics tailored to your goals.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-gray-800">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <span class="text-blue-600 font-bold text-xl">3</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Implementation</h3>
+                    <p class="text-gray-600">
+                        Building and integrating AI solutions using the most appropriate technologies and methodologies for your needs.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-gray-800">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <span class="text-blue-600 font-bold text-xl">4</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Optimization</h3>
+                    <p class="text-gray-600">
+                        Continuous monitoring, evaluation, and refinement of AI systems to ensure optimal performance and ROI.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-gradient-to-r from-blue-600 to-green-500 text-white py-16">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-4">Ready to Leverage AI for Your Business?</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">
+                Let's discuss how AI can help you solve complex problems, streamline operations, and drive innovation in your organization.
+            </p>
+            <a href="index.html#contact" class="bg-white text-blue-600 hover:bg-blue-50 px-8 py-3 rounded-full font-medium text-lg transition duration-300 inline-flex items-center">
+                Get in Touch
+                <i class="fas fa-envelope ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer (Copied from Portfolio) -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded overflow-hidden mr-2">
+                            <img src="https://via.placeholder.com/100x100.png?text=MA" alt="Monetize AI Logo" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-green-400">Monetize AI</span>
+                    </div>
+                    <p class="text-gray-400 mt-2 max-w-xs">
+                        Empowering businesses and individuals with AI expertise and creative solutions.
+                    </p>
+                </div>
+                <div class="flex flex-wrap justify-center gap-8">
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4">Quick Links</h4>
+                        <ul class="space-y-2">
+                            <li><a href="index.html#home" class="text-gray-400 hover:text-white transition">Home</a></li>
+                            <li><a href="about.html" class="text-gray-400 hover:text-white transition">About</a></li>
+                            <li><a href="index.html#skills" class="text-gray-400 hover:text-white transition">Skills</a></li>
+                            <li><a href="index.html#portfolio" class="text-gray-400 hover:text-white transition">Portfolio</a></li>
+                            <li><a href="ai-services.html" class="text-gray-400 hover:text-white transition">AI Services</a></li>
+                            <li><a href="index.html#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4">Services</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Graphics Design</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Content Creation</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">AI Consulting</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Prompt Engineering</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Training & Workshops</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4">Connect</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition flex items-center"><i class="fab fa-linkedin-in mr-2"></i> LinkedIn</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition flex items-center"><i class="fab fa-twitter mr-2"></i> Twitter</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition flex items-center"><i class="fab fa-youtube mr-2"></i> YouTube</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition flex items-center"><i class="fab fa-instagram mr-2"></i> Instagram</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition flex items-center"><i class="fas fa-envelope mr-2"></i> Email</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm">
+                    © 2025 Monetize AI. All rights reserved.
+                </p>
+                <div class="mt-4 md:mt-0">
+                    <ul class="flex space-x-6">
+                        <li><a href="#" class="text-gray-500 hover:text-white text-sm transition">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-500 hover:text-white text-sm transition">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-500 hover:text-white text-sm transition">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#top" class="fixed bottom-6 right-6 w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition duration-300 z-50">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.polyfills.min.js"></script>
+    <script>
+        // Smooth Scrolling
+        var scroll = new SmoothScroll('a[href*="#"]', {
+            speed: 800,
+            speedAsDuration: true,
+            offset: 70
+        });
+        
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

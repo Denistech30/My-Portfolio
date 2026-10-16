@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog - Monetize AI</title> <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0066cc;
+            --secondary-blue: #004c99;
+            --primary-green: #00cc66;
+            --secondary-green: #00a352;
+            --light-gray: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            bottom: -10px;
+            left: 0;
+            border-radius: 3px;
+        }
+        
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-icon {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(90deg, var(--secondary-blue), var(--secondary-green));
+            transform: translateY(-2px);
+        }
+        
+        .contact-icon {
+            transition: transform 0.3s;
+        }
+        
+        .contact-icon:hover {
+            transform: scale(1.2);
+        }
+        
+        /* Scroll bar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--light-gray);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-blue);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-blue);
+        }
+        
+        .navbar {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .portfolio-filter button.active {
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            color: white;
+        }
+        
+        /* Animation styles */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        /* Make sure for PDF export there's no odd page breaks */
+        @media print {
+            section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100"> <nav class="navbar fixed w-full z-10 py-3 px-4 md:px-8">
+    <div class="container mx-auto flex justify-between items-center">
+        <div class="flex items-center">
+            <!-- Logo Placeholder -->
+            <div class="w-10 h-10 rounded overflow-hidden mr-2">
+                <img src="https://i.imgur.com/6ZrVKCY.png?text=MA" alt="Monetize AI Logo" class="w-full h-full object-cover">
+            </div>
+            <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-500">Monetize AI</span>
+        </div>
+        
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden text-gray-800 focus:outline-none" id="menuToggle">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
+        
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex space-x-6 items-center">
+            <a href="index.html" class="nav-link font-medium text-gray-700 hover:text-blue-600">Home</a>
+            <a href="index.html#about" class="nav-link font-medium text-gray-700 hover:text-blue-600">About</a>
+            <a href="index.html#skills" class="nav-link font-medium text-gray-700 hover:text-blue-600">Skills</a>
+            <a href="index.html#portfolio" class="nav-link font-medium text-gray-700 hover:text-blue-600">Portfolio</a>
+            <a href="blog.html" class="nav-link font-medium text-blue-600 hover:text-blue-800">Blog</a> 
+            <a href="index.html#contact" class="nav-link font-medium text-gray-700 hover:text-blue-600">Contact</a>
+            <a href="index.html#contact" class="btn-primary px-4 py-2 rounded-full text-white font-medium shadow-lg">Hire Me</a>
+        </div>
+    </div>
+    
+    <!-- Mobile Navigation Menu (Hidden by default) -->
+    <div class="md:hidden hidden bg-white absolute top-16 left-0 right-0 shadow-md rounded-b-lg" id="mobileMenu">
+        <div class="flex flex-col p-4 space-y-3">
+            <a href="index.html" class="py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Home</a>
+            <a href="index.html#about" class="py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">About</a>
+            <a href="index.html#skills" class="py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Skills</a>
+            <a href="index.html#portfolio" class="py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Portfolio</a>
+            <a href="blog.html" class="py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Blog</a> 
+            <a href="index.html#contact" class="py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Contact</a>
+            <a href="index.html#contact" class="btn-primary py-2 px-4 rounded-full text-white text-center font-medium shadow-lg">Hire Me</a>
+        </div>
+    </div>
+</nav>
+    <section id="blog-listing" class="pt-28 pb-20"> <div class="container mx-auto px-4 md:px-8">
+            <h1 class="section-title text-3xl md:text-4xl font-bold text-center text-gray-800">My Blog</h1>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+                Sharing insights on AI, Design, Technology, and more.
+            </p>
+
+            <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col">
+                <div class="p-6 flex flex-col flex-grow"> <p class="text-sm text-gray-500 mb-2">April 9, 2025</p>
+            
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">
+                        Your First Awesome Blog Post Title Goes Here
+                    </h3>
+            
+                    <p class="text-gray-600 mb-4 flex-grow"> Write a brief 1-2 sentence summary of your blog post here. This gives readers a quick idea of the content...
+                    </p>
+            
+                    <a href="first-ai-post.html" class="inline-block text-blue-600 font-medium hover:text-blue-800 transition mt-auto"> Read More <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+    </section>
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center">
+                        <!-- Logo Placeholder -->
+                        <div class="w-10 h-10 rounded overflow-hidden mr-2">
+                            <img src="https://via.placeholder.com/100x100.png?text=MA" alt="Monetize AI Logo" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-green-400">Monetize AI</span>
+                    </div>
+                    <p class="text-gray-400 mt-2 max-w-xs">
+                        Empowering businesses and individuals with AI expertise and creative solutions.
+                    </p>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-8">
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4">Quick Links</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#home" class="text-gray-400 hover:text-white transition">Home</a></li>
+                            <li><a href="#about" class="text-gray-400 hover:text-white transition">About</a></li>
+                            <li><a href="#skills" class="text-gray-400 hover:text-white transition">Skills</a></li>
+                            <li><a href="#portfolio" class="text-gray-400 hover:text-white transition">Portfolio</a></li>
+                            <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4">Services</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Graphics Design</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Content Creation</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">AI Consulting</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Prompt Engineering</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Training & Workshops</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4">Connect</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition flex items-center"><i class="fab fa-linkedin-in mr-2"></i> LinkedIn</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition flex items-center"><i class="fab fa-twitter mr-2"></i> Twitter</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition flex items-center"><i class="fab fa-youtube mr-2"></i> YouTube</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition flex items-center"><i class="fab fa-instagram mr-2"></i> Instagram</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition flex items-center"><i class="fas fa-envelope mr-2"></i> Email</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm">
+                    &copy; 2023 Monetize AI. All rights reserved.
+                </p>
+                <div class="mt-4 md:mt-0">
+                    <ul class="flex space-x-6">
+                        <li><a href="#" class="text-gray-500 hover:text-white text-sm transition">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-500 hover:text-white text-sm transition">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-500 hover:text-white text-sm transition">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+          // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+    </body>
+</html>

@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monetize AI - Chemeh Denis Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0066cc;
+            --secondary-blue: #004c99;
+            --primary-green: #00cc66;
+            --secondary-green: #00a352;
+            --light-gray: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            bottom: -10px;
+            left: 0;
+            border-radius: 3px;
+        }
+        
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-icon {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(90deg, var(--secondary-blue), var(--secondary-green));
+            transform: translateY(-2px);
+        }
+        
+        .contact-icon {
+            transition: transform 0.3s;
+        }
+        
+        .contact-icon:hover {
+            transform: scale(1.2);
+        }
+        
+        /* Scroll bar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--light-gray);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-blue);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-blue);
+        }
+        
+        .navbar {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .portfolio-filter button.active {
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            color: white;
+        }
+        
+        /* Animation styles */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        /* Make sure for PDF export there's no odd page breaks */
+        @media print {
+            section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+    <!-- Navigation -->
+    <nav class="navbar fixed w-full z-10 py-3 px-4 md:px-8">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <!-- Logo Placeholder -->
+                <div class="w-10 h-10 rounded overflow-hidden mr-2">
+                    <img src="https://i.imgur.com/6ZrVKCY.png?text=MA" alt="Monetize AI Logo" class="w-full h-full object-cover">
+                </div>
+                <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-500">Monetize AI</span>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-gray-800 focus:outline-none" id="menuToggle">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#home" class="nav-link font-medium text-gray-700 hover:text-blue-600">Home</a>
+                <a href="#about" class="nav-link font-medium text-gray-700 hover:text-blue-600">About</a>
+                <a href="#skills" class="nav-link font-medium text-gray-700 hover:text-blue-600">Skills</a>
+                <a href="#portfolio" class="nav-link font-medium text-gray-700 hover:text-blue-600">Portfolio</a>
+                <a href="blog.html" class="nav-link font-medium text-blue-600 hover:text-blue-800">Blog</a>
+                <a href="#contact" class="nav-link font-medium text-gray-700 hover:text-blue-600">Contact</a>
+                <a href="#contact" class="btn-primary px-4 py-2 rounded-full text-white font-medium shadow-lg">Hire Me</a>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Menu (Hidden by default) -->
+        <div class="md:hidden hidden bg-white absolute top-16 left-0 right-0 shadow-md rounded-b-lg" id="mobileMenu">
+            <div class="flex flex-col p-4 space-y-3">
+                <a href="#home" class="py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Home</a>
+                <a href="#about" class="py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">About</a>
+                <a href="#skills" class="py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Skills</a>
+                <a href="#portfolio" class="py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Portfolio</a>
+                <a href="blog.html" class="block py-2 px-4 text-blue-600 bg-gray-100 rounded">Blog</a> <a href="index.html#contact" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Contact</a>
+                <a href="#contact" class="py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Contact</a>
+                <a href="#contact" class="btn-primary py-2 px-4 rounded-full text-white text-center font-medium shadow-lg">Hire Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center py-20 relative overflow-hidden">
+        <!-- Background Image Placeholder -->
+        <div class="absolute inset-0 z-0 opacity-20">
+            <img src="https://i.imgur.com/tI1NazT.jpeg?text=Background" alt="Background" class="w-full h-full object-cover">
+        </div>
+        
+        <div class="container mx-auto px-4 md:px-8 z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 animate-fadeInUp" style="animation-delay: 0.2s;">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
+                        <span class="block">Hi, I'm Chemeh Denis</span>
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-500">AI & Design Expert</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8">Graphics Designer | Content Creator | AI Consultant | Prompt Engineer</p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#portfolio" class="btn-primary px-8 py-3 rounded-full text-white font-medium shadow-lg flex items-center">
+                            View My Work
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#contact" class="border-2 border-blue-600 px-8 py-3 rounded-full text-blue-600 font-medium hover:bg-blue-50 transition duration-300 flex items-center">
+                            Contact Me
+                            <i class="fas fa-envelope ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 mt-12 md:mt-0 animate-fadeInUp" style="animation-delay: 0.4s;">
+                    <!-- Profile Image Placeholder -->
+                    <div class="relative mx-auto w-64 h-64 md:w-80 md:h-80">
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-green-500 opacity-70 blur transform -rotate-6"></div>
+                        <div class="absolute inset-1 bg-white rounded-full overflow-hidden">
+                            <img src="https://i.imgur.com/oF5VCn8.jpeg?text=Chemeh+Denis" alt="Chemeh Denis" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 md:px-8">
+            <h2 class="section-title text-3xl md:text-4xl font-bold text-center md:text-left">About Me</h2>
+            <div class="flex flex-col md:flex-row mt-12 items-start gap-12">
+                <div class="md:w-1/3">
+                    <div class="bg-white rounded-lg shadow-lg p-6 transform hover:scale-105 transition duration-300">
+                        <!-- Profile Picture Placeholder -->
+                        <img src="https://i.imgur.com/iRd2YvE.jpeg" alt="Chemeh Denis" class="w-full h-auto rounded-lg mb-6">
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <i class="fas fa-user-tie text-blue-600 mr-3 w-5"></i>
+                                <span>Chemeh Denis</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-briefcase text-blue-600 mr-3 w-5"></i>
+                                <span>AI & Design Professional</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-blue-600 mr-3 w-5"></i>
+                                <span>Available Worldwide</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-blue-600 mr-3 w-5"></i>
+                                <span>contact@monetizeai.com</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 flex justify-center space-x-4">
+                            <a href="#" class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-blue-400 text-white flex items-center justify-center hover:bg-blue-500 transition">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center hover:bg-purple-700 transition">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-2/3">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-600">My Journey</h3>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        I am a multidisciplinary professional specializing in graphics design, content creation, AI consulting, and prompt engineering. My passion lies in helping businesses and individuals leverage the power of AI to achieve their goals while creating visually appealing and engaging content.
+                    </p>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        With experience in creating educational content on YouTube focused on AI and technology, I help demystify complex concepts and make them accessible to everyone. My AI consulting services guide clients to the right AI software solutions to scale their businesses, while my prompt engineering skills help achieve optimal outcomes from AI interactions.
+                    </p>
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-600">Mission</h3>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        My mission with Monetize AI is to bridge the gap between cutting-edge AI technology and practical business applications. I aim to empower individuals and organizations to harness AI effectively, enhance their creative workflows, and achieve tangible results through thoughtful implementation and strategic guidance.
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+                        <div class="bg-white p-4 rounded-lg shadow text-center">
+                            <div class="text-4xl font-bold text-blue-600">5+</div>
+                            <div class="text-gray-600 text-sm">Years Experience</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow text-center">
+                            <div class="text-4xl font-bold text-blue-600">100+</div>
+                            <div class="text-gray-600 text-sm">Projects Completed</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow text-center">
+                            <div class="text-4xl font-bold text-blue-600">50+</div>
+                            <div class="text-gray-600 text-sm">Happy Clients</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow text-center">
+                            <div class="text-4xl font-bold text-blue-600">25+</div>
+                            <div class="text-gray-600 text-sm">AI Consultations</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20">
+        <div class="container mx-auto px-4 md:px-8">
+            <h2 class="section-title text-3xl md:text-4xl font-bold text-center">My Expertise</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-16">
+                I offer a unique blend of creative and technical skills to help you navigate the evolving landscape of AI technology and digital content creation.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Graphics Design -->
+                <div class="bg-white rounded-xl shadow-lg p-8 border-t-4 border-blue-600 card">
+                    <div class="text-5xl skill-icon mb-6">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Graphics Design</h3>
+                    <p class="text-gray-600 mb-6">
+                        Creating visually stunning designs that communicate your message effectively. From brand identities to marketing materials, I deliver compelling visual solutions that capture attention and convey value.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Brand Identity & Logo Design</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Digital Marketing Graphics</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>UI/UX Elements</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Print & Digital Publication Design</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Content Creation -->
+                <div class="bg-white rounded-xl shadow-lg p-8 border-t-4 border-green-500 card">
+                    <div class="text-5xl skill-icon mb-6">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Content Creation</h3>
+                    <p class="text-gray-600 mb-6">
+                        Producing educational and engaging content focused on AI and technology. My YouTube channel demystifies complex tech concepts and provides actionable insights for viewers of all knowledge levels.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Educational AI & Tech Videos</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Tutorial Content & How-to Guides</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Technology Explainer Videos</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Case Studies & Success Stories</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- AI Consulting -->
+                <div class="bg-white rounded-xl shadow-lg p-8 border-t-4 border-blue-600 card">
+                    <div class="text-5xl skill-icon mb-6">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">AI Consulting</h3>
+                    <p class="text-gray-600 mb-6">
+                        Guiding businesses in selecting and implementing the right AI solutions to scale operations and enhance productivity. I provide strategic advice on integrating AI into existing workflows.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>AI Tool Selection & Implementation</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Workflow Optimization Strategies</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>ROI Analysis for AI Adoption</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>AI Integration Planning</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Prompt Engineering -->
+                <div class="bg-white rounded-xl shadow-lg p-8 border-t-4 border-green-500 card">
+                    <div class="text-5xl skill-icon mb-6">
+                        <i class="fas fa-keyboard"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Prompt Engineering</h3>
+                    <p class="text-gray-600 mb-6">
+                        Crafting effective prompts to achieve desired outcomes from AI systems. I help clients master the art of communication with AI to get consistent, high-quality results from various AI platforms.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Custom Prompt Development</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Prompt Optimization Training</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>AI Output Quality Enhancement</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Framework Development for Teams</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <a href="#contact" class="btn-primary inline-block px-8 py-3 rounded-full text-white font-medium shadow-lg">
+                    Let's Work Together
+                    <i class="fas fa-handshake ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 md:px-8">
+            <h2 class="section-title text-3xl md:text-4xl font-bold text-center">My Portfolio</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+                Browse through my recent projects across different domains. Each project showcases my expertise in graphics design, content creation, AI consulting, or prompt engineering.
+            </p>
+            
+            <!-- Portfolio Filters -->
+            <div class="flex flex-wrap justify-center mb-10 portfolio-filter">
+                <button class="m-2 px-6 py-2 rounded-full bg-white shadow-md hover:shadow-lg active transition duration-300" data-filter="all">All</button>
+                <button class="m-2 px-6 py-2 rounded-full bg-white shadow-md hover:shadow-lg transition duration-300" data-filter="graphics">Graphics Design</button>
+                <button class="m-2 px-6 py-2 rounded-full bg-white shadow-md hover:shadow-lg transition duration-300" data-filter="content">Content Creation</button>
+                <button class="m-2 px-6 py-2 rounded-full bg-white shadow-md hover:shadow-lg transition duration-300" data-filter="consulting">AI Consulting</button>
+                <button class="m-2 px-6 py-2 rounded-full bg-white shadow-md hover:shadow-lg transition duration-300" data-filter="prompt">Prompt Engineering</button>
+            </div>
+            
+            <!-- Portfolio Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 portfolio-grid">
+                <!-- Portfolio Items (Graphics Design) -->
+                <div class="portfolio-item graphics">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                        <div class="relative h-60 overflow-hidden">
+                            <!-- Portfolio Image Placeholder -->
+                            <img src="https://via.placeholder.com/600x400.png?text=Brand+Identity+Project" alt="Brand Identity Project" class="w-full h-full object-cover">
+                            <div class="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                                Graphics Design
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Brand Identity Project</h3>
+                            <p class="text-gray-600 mb-4">Complete brand identity design including logo, color palette, typography, and brand guidelines.</p>
+                            <a href="graphics-design.html" class="inline-block text-blue-600 font-medium hover:text-blue-800 transition">
+                                View Details
+                                <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Items (Content Creation) -->
+                <div class="portfolio-item content">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                        <div class="relative h-60 overflow-hidden">
+                            <!-- Portfolio Image Placeholder -->
+                            <img src="https://via.placeholder.com/600x400.png?text=AI+Tutorial+Series" alt="AI Tutorial Series" class="w-full h-full object-cover">
+                            <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                                Content Creation
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">AI Tutorial Series</h3>
+                            <p class="text-gray-600 mb-4">Educational video series teaching viewers how to use popular AI tools effectively.</p>
+                            <a href="#" class="inline-block text-blue-600 font-medium hover:text-blue-800 transition">
+                                View Details
+                                <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Items (AI Consulting) -->
+                <div class="portfolio-item consulting">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                        <div class="relative h-60 overflow-hidden">
+                            <!-- Portfolio Image Placeholder -->
+                            <img src="https://via.placeholder.com/600x400.png?text=Business+AI+Integration" alt="Business AI Integration" class="w-full h-full object-cover">
+                            <div class="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                                AI Consulting
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Business AI Integration</h3>
+                            <p class="text-gray-600 mb-4">Strategic AI implementation for a retail business resulting in 30% increased efficiency.</p>
+                            <a href="ai-services.html" class="inline-block text-blue-600 font-medium hover:text-blue-800 transition">
+                                View Details
+                                <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Items (Prompt Engineering) -->
+                <div class="portfolio-item prompt">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                        <div class="relative h-60 overflow-hidden">
+                            <!-- Portfolio Image Placeholder -->
+                            <img src="https://via.placeholder.com/600x400.png?text=Prompt+Framework" alt="Prompt Engineering Framework" class="w-full h-full object-cover">
+                            <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                                Prompt Engineering
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Prompt Engineering Framework</h3>
+                            <p class="text-gray-600 mb-4">Custom framework developed for marketing teams to generate consistent, high-quality AI content.</p>
+                            <a href="#" class="inline-block text-blue-600 font-medium hover:text-blue-800 transition">
+                                View Details
+                                <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Items (Graphics Design) -->
+                <div class="portfolio-item graphics">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                        <div class="relative h-60 overflow-hidden">
+                            <!-- Portfolio Image Placeholder -->
+                            <img src="https://via.placeholder.com/600x400.png?text=Marketing+Campaign" alt="Marketing Campaign Visuals" class="w-full h-full object-cover">
+                            <div class="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                                Graphics Design
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Marketing Campaign Visuals</h3>
+                            <p class="text-gray-600 mb-4">Comprehensive visual design package for a multi-channel marketing campaign.</p>
+                            <a href="graphics-design.html" class="inline-block text-blue-600 font-medium hover:text-blue-800 transition">
+                                View Details
+                                <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Items (Content Creation) -->
+                <div class="portfolio-item content">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                        <div class="relative h-60 overflow-hidden">
+                            <!-- Portfolio Image Placeholder -->
+                            <img src="https://via.placeholder.com/600x400.png?text=Tech+Explainer+Series" alt="Tech Explainer Series" class="w-full h-full object-cover">
+                            <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                                Content Creation
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Tech Explainer Series</h3>
+                            <p class="text-gray-600 mb-4">Series of animated videos explaining complex technical concepts in accessible terms.</p>
+                            <a href="#" class="inline-block text-blue-600 font-medium hover:text-blue-800 transition">
+                                View Details
+                                <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="#" class="border-2 border-blue-600 px-8 py-3 rounded-full text-blue-600 font-medium hover:bg-blue-50 transition duration-300 inline-flex items-center">
+                    Load More Projects
+                    <i class="fas fa-spinner ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gradient-to-r from-blue-600 to-green-500 text-white">
+        <div class="container mx-auto px-4 md:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">Client Testimonials</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 text-gray-800 relative">
+                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                        <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                    </div>
+                    <div class="pt-6">
+                        <p class="italic text-gray-600 mb-6">
+                            "Chemeh's AI consulting transformed our business operations. His strategic guidance helped us implement the right tools that increased our productivity by over 40%."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                <!-- Testimonial Avatar Placeholder -->
+                                <img src="https://via.placeholder.com/100x100.png?text=J" alt="John Smith" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-bold">John Smith</h4>
+                                <p class="text-sm text-gray-500">CEO, TechSolutions Inc.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 text-gray-800 relative">
+                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                        <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                    </div>
+                    <div class="pt-6">
+                        <p class="italic text-gray-600 mb-6">
+                            "The brand identity Chemeh created for our startup perfectly captures our vision. His graphic design skills are exceptional, and he delivered beyond our expectations."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                <!-- Testimonial Avatar Placeholder -->
+                                <img src="https://via.placeholder.com/100x100.png?text=S" alt="Sarah Johnson" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Sarah Johnson</h4>
+                                <p class="text-sm text-gray-500">Founder, Innovate Labs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 text-gray-800 relative">
+                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                        <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                    </div>
+                    <div class="pt-6">
+                        <p class="italic text-gray-600 mb-6">
+                            "Chemeh's prompt engineering training completely changed how our team uses AI tools. His frameworks and techniques helped us get consistent, high-quality outputs that improved our content production."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                <!-- Testimonial Avatar Placeholder -->
+                                <img src="https://via.placeholder.com/100x100.png?text=M" alt="Michael Chen" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Michael Chen</h4>
+                                <p class="text-sm text-gray-500">Marketing Director, Global Media</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-4 md:px-8">
+            <h2 class="section-title text-3xl md:text-4xl font-bold text-center">Get In Touch</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-16">
+                Ready to discuss your project or have questions about my services? Reach out to me using the form below or through my social media channels.
+            </p>
+            
+            <div class="flex flex-col md:flex-row gap-10">
+                <div class="md:w-2/5">
+                    <div class="bg-white rounded-xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold mb-6 text-blue-600">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-envelope text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Email</h4>
+                                    <p class="text-gray-600">contact@monetizeai.com</p>
+                                    <p class="text-gray-600">denis@monetizeai.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-phone text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Phone</h4>
+                                    <p class="text-gray-600">(+237)6-58-28-93-30</p>
+                                    <p class="text-gray-600">Monday-Friday, 9AM-5PM</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Location</h4>
+                                    <p class="text-gray-600">Available for remote work worldwide</p>
+                                    <p class="text-gray-600">In-person meetings upon arrangement</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10">
+                            <h4 class="font-semibold text-gray-800 mb-4">Connect With Me</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition contact-icon">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-blue-400 text-white flex items-center justify-center hover:bg-blue-500 transition contact-icon">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition contact-icon">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center hover:bg-purple-700 transition contact-icon">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-3/5">
+                    <form class="bg-white rounded-xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold mb-6 text-blue-600">Send Me a Message</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 transition" placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Your Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 transition" placeholder="john@example.com">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                            <input type="text" id="subject" name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 transition" placeholder="Project Inquiry">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="service" class="block text-gray-700 font-medium mb-2">Service Interested In</label>
+                            <select id="service" name="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 transition">
+                                <option value="">Select a Service</option>
+                                <option value="graphics">Graphics Design</option>
+                                <option value="content">Content Creation</option>
+                                <option value="consulting">AI Consulting</option>
+                                <option value="prompt">Prompt Engineering</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Your Message</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 transition" placeholder="Tell me about your project or inquiry..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary w-full py-3 rounded-lg text-white font-medium shadow-lg flex items-center justify-center">
+                            Send Message
+                            <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center">
+                        <!-- Logo Placeholder -->
+                        <div class="w-10 h-10 rounded overflow-hidden mr-2">
+                            <img src="https://via.placeholder.com/100x100.png?text=MA" alt="Monetize AI Logo" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-green-400">Monetize AI</span>
+                    </div>
+                    <p class="text-gray-400 mt-2 max-w-xs">
+                        Empowering businesses and individuals with AI expertise and creative solutions.
+                    </p>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-8">
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4">Quick Links</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#home" class="text-gray-400 hover:text-white transition">Home</a></li>
+                            <li><a href="#about" class="text-gray-400 hover:text-white transition">About</a></li>
+                            <li><a href="#skills" class="text-gray-400 hover:text-white transition">Skills</a></li>
+                            <li><a href="#portfolio" class="text-gray-400 hover:text-white transition">Portfolio</a></li>
+                            <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4">Services</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Graphics Design</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Content Creation</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">AI Consulting</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Prompt Engineering</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Training & Workshops</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4">Connect</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition flex items-center"><i class="fab fa-linkedin-in mr-2"></i> LinkedIn</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition flex items-center"><i class="fab fa-twitter mr-2"></i> Twitter</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition flex items-center"><i class="fab fa-youtube mr-2"></i> YouTube</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition flex items-center"><i class="fab fa-instagram mr-2"></i> Instagram</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition flex items-center"><i class="fas fa-envelope mr-2"></i> Email</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm">
+                    &copy; 2025 Monetize AI. All rights reserved.
+                </p>
+                <div class="mt-4 md:mt-0">
+                    <ul class="flex space-x-6">
+                        <li><a href="#" class="text-gray-500 hover:text-white text-sm transition">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-500 hover:text-white text-sm transition">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-500 hover:text-white text-sm transition">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#home" class="fixed bottom-6 right-6 w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition duration-300 z-50">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.polyfills.min.js"></script>
+    <script>
+        // Smooth Scrolling
+        var scroll = new SmoothScroll('a[href*="#"]', {
+            speed: 800,
+            speedAsDuration: true,
+            offset: 70
+        });
+        
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Portfolio Filtering
+        const filterButtons = document.querySelectorAll('.portfolio-filter button');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                
+                // Show/hide portfolio items based on filter
+                portfolioItems.forEach(item => {
+                    if (filter === 'all' || item.classList.contains(filter)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.boxShadow = 'none';
+            }
+        });
+        
+        // Initialize with all portfolio items visible and first filter active
+        filterButtons[0].classList.add('active');
+    </script>
+</body>
+</html>
